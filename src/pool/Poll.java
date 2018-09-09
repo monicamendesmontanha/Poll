@@ -1,24 +1,33 @@
 package pool;
 
-import java.util.List;
+import java.util.*;
 
 public class Poll {
 
-    private int votes;
-    private List<Integer> candidates;
+    private Map<Integer, Integer> candidates;
 
     public Poll(List<Integer> candidates) {
-        this.candidates = candidates;
-        this.votes = 0;
+        this.candidates = new HashMap<>();
+        for (Integer candidate : candidates) {
+            this.candidates.put(candidate, 0);
+        }
     }
 
     public void addVote(Integer candidate) {
-        if (this.candidates.contains(candidate)) {
-            this.votes = this.votes + 1;
+        if (this.candidates.containsKey(candidate)) {
+            int votes = this.candidates.get(candidate);
+            this.candidates.replace(candidate, votes + 1);
         }
     }
 
     public Integer totalVotes() {
-        return this.votes;
+        int totalVotes = 0;
+        Collection<Integer> allVotes = this.candidates.values();
+
+        for (Integer votes : allVotes) {
+            totalVotes = totalVotes + votes;
+        }
+
+        return totalVotes;
     }
 }
