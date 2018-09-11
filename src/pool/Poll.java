@@ -30,4 +30,15 @@ public class Poll {
 
         return totalVotes;
     }
+
+    public List<Candidate> candidatesWithVotes() {
+        Set<Integer> candidateIds = this.candidates.keySet();
+        List<Candidate> candidatesWithVotes = new ArrayList<>();
+        for (Integer id : candidateIds) {
+            Integer votes = this.candidates.get(id);
+            candidatesWithVotes.add(new Candidate(id, votes));
+        }
+
+        return candidatesWithVotes;
+    }
 }

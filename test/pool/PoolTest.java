@@ -41,4 +41,24 @@ public class PoolTest {
         assertEquals(new Integer(2), poll.totalVotes());
     }
 
+    @Test
+    public void shouldReturnVotesByCandidates() {
+
+        List<Integer> candidates = new ArrayList<>();
+        candidates.add(1);
+        candidates.add(2);
+
+        Poll poll = new Poll(candidates);
+        poll.addVote(1);
+        poll.addVote(1);
+        poll.addVote(1);
+        poll.addVote(2);
+
+        List<Candidate> expectedResult = new ArrayList<>();
+        expectedResult.add(new Candidate(1, 3));
+        expectedResult.add(new Candidate(2, 1));
+
+        assertEquals(expectedResult, poll.candidatesWithVotes());
+    }
+
 }

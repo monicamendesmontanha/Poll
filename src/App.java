@@ -1,3 +1,4 @@
+import pool.Candidate;
 import pool.Poll;
 
 import java.util.ArrayList;
@@ -26,6 +27,15 @@ public class App {
         poll.addVote(candidateNumber());
 
         displayTotalVotes(poll);
+        displayCandidatesByVote(poll);
+    }
+
+    private static void displayCandidatesByVote(Poll poll) {
+        List<Candidate> votes = poll.candidatesWithVotes();
+
+        for(Candidate candidate : votes) {
+            System.out.println(candidate);
+        }
     }
 
     private static int candidateNumber() {
